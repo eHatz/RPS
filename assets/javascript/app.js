@@ -28,7 +28,7 @@ $('#addUserBtn').on('click', function() {
 
 	$('#userNameInput').val('');
 });
-
+ // if valueInP1 || valueInP2 ... replace form with "HI ... you are player1"
 dbRef.on('value', function(snapshot) {
 	console.log(snapshot.val().player1);
 	valueInP1 = snapshot.val().player1;
