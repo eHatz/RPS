@@ -16,3 +16,10 @@ body {
 	background-color: white;
 	margin: 20px;
 }
+#userNameForm{
+	text-align: center;
+
+}
+#messagesBar {
+	width: 100%;
+}

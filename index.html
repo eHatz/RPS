@@ -15,22 +15,26 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-md-4"></div>
 			<div class="col-md-4" id="userNameForm">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="Username" id="userNameInput">
-					<span class="input-group-addon" id="addUserBtn">Start Playing</span>
-				</div>
+				<form class="form-inline">
+					<div class="form-group">
+						<input type="text" class="form-control" id="userNameInput" placeholder="Username">
+					</div>
+					<button type="submit" class="btn btn-default" id="addUserBtn">Start Playing</button>
+				</form>
 			</div>
+			<div class="col-md-4"></div>
 		</div>
 		<div class="row">
 			<div class="col-md-6">
 				<div id="player1">
-					<h1>Player 1</h1>
+					<h1 id="p1BoxTitle"></h1>
 				</div>
 			</div>
 			<div class="col-md-6">
 				<div  id="player2">
-					<h1>Player 2</h1>
+					<h1 id="p2BoxTitle"></h1>
 				</div>
 			</div>
 		</div>
@@ -45,11 +49,12 @@
 			<div class="col-md-12" id='chatRoom'>
 				<div id="chatBox">
 				</div>
-				<div class="input-group">
-					<input type="text" class="form-control" aria-describedby="basic-addon2">
-					<span class="input-group-addon" id="basic-addon2">Send</span>
-				</div>
-
+				<form class="form-inline">
+					<div class="form-group col-md-12">
+						<input type="text" class="form-control" id="messages" placeholder="Username">
+					</div>
+					<button type="submit" class="btn btn-default" id="sendMessageBtn">Send</button>
+				</form>
 			</div>
 		</div>
 
