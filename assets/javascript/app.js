@@ -41,8 +41,10 @@ function addRpsButtons() {
 		var buttons = $('<button>', {
 		text: choices[i],
 		id: choices[i],
-		class: 'rpsButtons btn btn-primary'
 	});
+	if (localUser1) {buttons.addClass('rpsButtons btn btn-primary')};
+	if (localUser2) {buttons.addClass('rpsButtons btn btn-danger')};
+
 		$(buttonContainer).append(buttons); //button container get 3 buttons with content from the array
 	};
 
@@ -53,13 +55,13 @@ function addRpsButtons() {
 	};
 };
 function reset() {
-	dbRef.child('player1').child('dbPlayerChoice').set('');
+	dbRef.child('player1').child('dbPlayerChoice').set(''); //resets the values of player choice on the database
 	dbRef.child('player2').child('dbPlayerChoice').set('');
 }
 
 
-$('#addUserBtn').on('click', function() {
-	if ($('#userNameInput').val() == false) {
+$('#addUserBtn').on('click', function() { //user must make a username to play
+	if ($('#userNameInput').val() == false) { //if the user did not enter anything, a warning will appear
 		$('#errorMessage').text('Please Enter A Username');
 		return false;
 	}
@@ -94,20 +96,20 @@ $('#addUserBtn').on('click', function() {
 $('#sendMessageBtn').on('click', function() { // on click function for sending messages
 	var userMessage = $('#messages').val();// value in the form
 
-	if (userMessage == false) {
+	if (userMessage == false) { // if nothing was submitted in the textbox nothing will happen
 		return false;
 	};
 
-	if (localUser1) {
-		dbRef.child('message1').set(localUser1 + ': ' + userMessage + '<br>');
-		$('#messages').val('');
+	if (localUser1) { // if you are player1 the message typed in the text box will be set to message1 on the database
+		dbRef.child('message1').set(localUser1 + ': ' + userMessage + '<br>'); 
+		$('#messages').val(''); //clears the text input field
 
-	} else if (localUser2) {
+	} else if (localUser2) { // if you are player 2 the message typed in the text box will be set to message1 on the database
 		dbRef.child('message2').set(localUser2 + ': ' + userMessage + '<br>');
 		$('#messages').val('');
 
 	} else {
-		$('#error').html('You must make a username before sending messages <br>');
+		$('#error').html('You must make a username before sending messages <br>'); // displays if the user has not yet created a username
 		$('#messages').val('');
 	};
 	return false;
@@ -143,24 +145,24 @@ dbRef.on('value', function(snapshot) {
 	//once this page is refreshed or opened it will automatically run this function again, 
 	//so if another user closes the page, the values stored in the current users sessions will be pushed to the database so the current user wont lose their session
 
-//if there is a value in localUser1 change the value of player1 in the database to all the local variables
-//(this if and if else statement prevent the user who has not refreshed or left the page from losing all of their data and progress)
+//if there is a value in localUser1 change the values of player1 in the database to all the local variables
+//(this if and if else statement prevent the user who has not refreshed or left the page from losing all of their data/progress)
 	if (localUser1) { 
 		dbRef.child('player1').child('dbPlayerName').set(playerName); 
 		dbRef.child('player1').child('dbPlayerChoice').set(playerChoice);
 		dbRef.child('player1').child('dbPlayerWins').set(player1Wins); 
 		dbRef.child('player1').child('dbPlayerLosses').set(player1Losses);
-		$('#choiceBox1').html(objectP1.dbPlayerChoice + '<br>');
+		$('#choiceBox1').html(objectP1.dbPlayerChoice + '<br>'); // if you are player 1 add the followind lines to the player 1 box
 		$('#scoreBox1').html('You\'ve won: ' + objectP1.dbPlayerWins + '<br>');
 		$('#scoreBox1').append('You\'ve lost: ' + objectP1.dbPlayerLosses);
 
 
-	} else if (localUser2) { //if there is a value in localUser2 change the value of player2 in the database to all the local variables
+	} else if (localUser2) {
 		dbRef.child('player2').child('dbPlayerName').set(playerName); 
 		dbRef.child('player2').child('dbPlayerChoice').set(playerChoice);
 		dbRef.child('player2').child('dbPlayerWins').set(player2Wins); 
 		dbRef.child('player2').child('dbPlayerLosses').set(player2Losses);
-		$('#choiceBox2').html(objectP2.dbPlayerChoice + '<br>');
+		$('#choiceBox2').html(objectP2.dbPlayerChoice + '<br>'); // if you are player 1 add the followind lines to the player 1 box
 		$('#scoreBox2').html('You\'ve won: ' + objectP2.dbPlayerWins + '<br>');
 		$('#scoreBox2').append('You\'ve lost: ' + objectP2.dbPlayerLosses);
 	};
@@ -226,21 +228,21 @@ dbRef.on('value', function(snapshot) {
 		reset();
 	};
 
-	var msg1 = $('<p>', {
+	var msg1 = $('<p>', { // makes a p tag with the text saved in snapshot message1
 		id: 'player1msg',
 		html: snapshot.val().message1
 	});
-	var msg2 = $('<p>', {
+	var msg2 = $('<p>', { // makes a p tag with the text saved in snapshot message2
 		id: 'player2msg',
 		html: snapshot.val().message2
 	});
-	if (snapshot.val().message1) {
-		$('#chatBox').append(msg1);
-		dbRef.child('message1').set('');
+	if (snapshot.val().message1) { // checks to see if the message is from message1 on the database
+		$('#chatBox').append(msg1); // if it is, append it to the chat room
+		dbRef.child('message1').set(''); // clear the value in message1 on the database
 	}
-	if (snapshot.val().message2) {
-		$('#chatBox').append(msg2);
-		dbRef.child('message2').set('');
+	if (snapshot.val().message2) { // checks to see if the message is from message2 on the database
+		$('#chatBox').append(msg2); // if it is, append it to the chat room
+		dbRef.child('message2').set(''); // clear the value in message 2 on the database
 	}
 });
 
