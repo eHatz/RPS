@@ -31,37 +31,65 @@
 			<div class="col-md-6 buttonBox">
 				<div id="player1">
 					<h1 id="p1BoxTitle"></h1>
-					<div id=buttonBox1>
-					</div>
+					<div id=buttonBox1></div>
+					<div id="choiceBox1"></div>
+					<div id="scoreBox1"></div>
+
 				</div>
 			</div>
 			<div class="col-md-6 buttonBox">
 				<div  id="player2">
 					<h1 id="p2BoxTitle"></h1>
-					<div id=buttonBox2>
-					</div>
+					<div id=buttonBox2></div>
+					<div id="choiceBox2"></div>
+					<div id="scoreBox2"></div>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12">
 				<div>
-					<h1>winner</h1>
+					<h1>Chat</h1>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-12" id='chatRoom'>
 				<div id="chatBox">
+				<p id="error"></p>
 				</div>
-				<form class="form-inline">
-					<div class="form-group" id="messagesBar">
-						<input type="text" class="form-control" id="messages" placeholder="Username">
-					</div>
-					<button type="submit" class="btn btn-default" id="sendMessageBtn">Send</button>
-				</form>
+					<form>
+						<div class="form-group" id="messagesBar">
+							<div class="row">
+								<div class="col-md-12">
+									<input type="text" class="form-control" id="messages" placeholder="Username">
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<button type="submit" class="btn btn-primary btn-block" id="sendMessageBtn">Send</button>
+								</div>
+							</div>
+						</div>
+					</form>
+					
 			</div>
 		</div>
+
+		<!-- <div class="row">
+			<div class="col-md-12" id='chatRoom'>
+				<div id="chatBox">
+					<p id="error"></p>
+				</div>
+
+				<div class="input-group input-group-md" id="messagesBar">
+					<input type="text" class="form-control input-md" id="messages">
+					<span class="input-group-btn">
+						<button class="btn btn-default btn-md" id="sendMessageBtn" type="submit">Send</button>
+					</span>
+				</div>
+			</div>
+		</div> -->
 
 
 	</div>
